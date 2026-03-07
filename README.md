@@ -1,30 +1,45 @@
-# rupx
+# rupee-india
 
 > 🇮🇳 A lightweight, zero-dependency Indian Rupee formatter for Node.js
 
 Format numbers using the **Indian numbering system** (thousand, lakh, crore), convert amounts to words, and display with the ₹ symbol — all without any external dependencies.
 
+[![npm version](https://img.shields.io/npm/v/rupee-india.svg)](https://www.npmjs.com/package/rupee-india)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Node.js](https://img.shields.io/badge/Node.js-16%2B-brightgreen.svg)](https://nodejs.org)
+
+---
+
+## ✨ Features
+
+- 🔢 **Indian comma grouping** — formats numbers as `1,00,000` instead of `100,000`
+- 💰 **Rupee symbol** — prefix with ₹ in one call
+- 🗣️ **Number to words** — `"One Lakh Rupees"` with paise support
+- 📊 **Lakh / Crore helpers** — express values in lakh or crore units
+- ⚡ **Zero dependencies** — lightweight and fast
+- 🛡️ **Input validation** — descriptive errors for invalid input
+- 🧩 **CommonJS** — works with `require()` out of the box (Node.js 16+)
 
 ---
 
 ## Installation
 
 ```bash
-npm install rupx
+npm install rupee-india
 ```
+
+---
 
 ## Quick Start
 
 ```javascript
-const rupx = require("rupx");
+const rupee = require("rupee-india");
 
-rupx.format(1000000);           // "10,00,000"
-rupx.formatWithSymbol(50000);   // "₹50,000"
-rupx.toWords(1250);             // "One Thousand Two Hundred Fifty Rupees"
-rupx.lakhs(1000000);            // "10 Lakh"
-rupx.crores(10000000);          // "1 Crore"
+rupee.format(1000000);           // "10,00,000"
+rupee.formatWithSymbol(50000);   // "₹50,000"
+rupee.toWords(1250);             // "One Thousand Two Hundred Fifty Rupees"
+rupee.lakhs(1000000);            // "10 Lakh"
+rupee.crores(10000000);          // "1 Crore"
 ```
 
 ---
@@ -42,13 +57,13 @@ Converts a number to a string with **Indian comma grouping** (groups of 3 then 2
 **Returns:** `string` — comma-formatted number.
 
 ```javascript
-rupx.format(1000);        // "1,000"
-rupx.format(100000);      // "1,00,000"
-rupx.format(10000000);    // "1,00,00,000"
-rupx.format(1234567890);  // "1,23,45,67,890"
-rupx.format(-50000);      // "-50,000"
-rupx.format(1234.56);     // "1,234.56"
-rupx.format("100000");    // "1,00,000"  (string input)
+rupee.format(1000);        // "1,000"
+rupee.format(100000);      // "1,00,000"
+rupee.format(10000000);    // "1,00,00,000"
+rupee.format(1234567890);  // "1,23,45,67,890"
+rupee.format(-50000);      // "-50,000"
+rupee.format(1234.56);     // "1,234.56"
+rupee.format("100000");    // "1,00,000"  (string input)
 ```
 
 ---
@@ -64,10 +79,10 @@ Same as `format()` but prefixed with the **₹** Rupee symbol.
 **Returns:** `string` — formatted number with ₹ prefix.
 
 ```javascript
-rupx.formatWithSymbol(100000);   // "₹1,00,000"
-rupx.formatWithSymbol(0);        // "₹0"
-rupx.formatWithSymbol(-500);     // "-₹500"
-rupx.formatWithSymbol(10000000); // "₹1,00,00,000"
+rupee.formatWithSymbol(100000);   // "₹1,00,000"
+rupee.formatWithSymbol(0);        // "₹0"
+rupee.formatWithSymbol(-500);     // "-₹500"
+rupee.formatWithSymbol(10000000); // "₹1,00,00,000"
 ```
 
 ---
@@ -83,13 +98,13 @@ Converts a number to **Indian-English currency words**. Supports paise (up to 2 
 **Returns:** `string` — human-readable currency string.
 
 ```javascript
-rupx.toWords(0);          // "Zero Rupees"
-rupx.toWords(1500);       // "One Thousand Five Hundred Rupees"
-rupx.toWords(100000);     // "One Lakh Rupees"
-rupx.toWords(10000000);   // "One Crore Rupees"
-rupx.toWords(1234567);    // "Twelve Lakh Thirty Four Thousand Five Hundred Sixty Seven Rupees"
-rupx.toWords(21.50);      // "Twenty One Rupees and Fifty Paise"
-rupx.toWords(-500);       // "Minus Five Hundred Rupees"
+rupee.toWords(0);          // "Zero Rupees"
+rupee.toWords(1500);       // "One Thousand Five Hundred Rupees"
+rupee.toWords(100000);     // "One Lakh Rupees"
+rupee.toWords(10000000);   // "One Crore Rupees"
+rupee.toWords(1234567);    // "Twelve Lakh Thirty Four Thousand Five Hundred Sixty Seven Rupees"
+rupee.toWords(21.50);      // "Twenty One Rupees and Fifty Paise"
+rupee.toWords(-500);       // "Minus Five Hundred Rupees"
 ```
 
 ---
@@ -105,10 +120,10 @@ Express a number in **Lakh** units (1 Lakh = 1,00,000).
 **Returns:** `string` — value in lakhs with label.
 
 ```javascript
-rupx.lakhs(100000);   // "1 Lakh"
-rupx.lakhs(1000000);  // "10 Lakh"
-rupx.lakhs(250000);   // "2.5 Lakh"
-rupx.lakhs(50000);    // "0.5 Lakh"
+rupee.lakhs(100000);   // "1 Lakh"
+rupee.lakhs(1000000);  // "10 Lakh"
+rupee.lakhs(250000);   // "2.5 Lakh"
+rupee.lakhs(50000);    // "0.5 Lakh"
 ```
 
 ---
@@ -124,9 +139,9 @@ Express a number in **Crore** units (1 Crore = 1,00,00,000).
 **Returns:** `string` — value in crores with label.
 
 ```javascript
-rupx.crores(10000000);   // "1 Crore"
-rupx.crores(100000000);  // "10 Crore"
-rupx.crores(75000000);   // "7.5 Crore"
+rupee.crores(10000000);   // "1 Crore"
+rupee.crores(100000000);  // "10 Crore"
+rupee.crores(75000000);   // "7.5 Crore"
 ```
 
 ---
@@ -136,11 +151,13 @@ rupx.crores(75000000);   // "7.5 Crore"
 All functions validate their input and throw descriptive errors:
 
 ```javascript
-rupx.format("abc");       // TypeError: Expected a number ...
-rupx.format(Infinity);    // RangeError: Number must be finite ...
-rupx.format(null);        // TypeError: Expected a number ...
-rupx.format(undefined);   // TypeError: Expected a number ...
+rupee.format("abc");       // TypeError: Expected a number ...
+rupee.format(Infinity);    // RangeError: Number must be finite ...
+rupee.format(null);        // TypeError: Expected a number ...
+rupee.format(undefined);   // TypeError: Expected a number ...
 ```
+
+---
 
 ## Running Tests
 
@@ -148,10 +165,12 @@ rupx.format(undefined);   // TypeError: Expected a number ...
 npm test
 ```
 
+---
+
 ## Project Structure
 
 ```
-rupx/
+rupee-india/
 ├── package.json
 ├── README.md
 ├── LICENSE
@@ -164,6 +183,24 @@ rupx/
     └── test.js       # Comprehensive test suite
 ```
 
+---
+
+## Contributing
+
+Contributions are welcome! Feel free to open an issue or submit a pull request on the [GitHub repository](https://github.com/dheeraj0808/package).
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/my-feature`)
+3. Commit your changes (`git commit -m "Add my feature"`)
+4. Push to the branch (`git push origin feature/my-feature`)
+5. Open a Pull Request
+
+---
+
+## Author
+
+**Dheeraj Singh** — [GitHub](https://github.com/dheeraj0808)
+
 ## License
 
-[MIT](LICENSE) © 2026
+[MIT](LICENSE) © 2026 Dheeraj Singh
