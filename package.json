@@ -1,5 +1,5 @@
 {
-  "name": "rupx",
+  "name": "rupee-india",
   "version": "1.0.0",
   "description": "Indian Rupee formatter for Node.js — format numbers with Indian comma system, convert to words, lakhs and crores",
   "main": "index.js",
