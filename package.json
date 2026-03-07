@@ -27,7 +27,7 @@
     "money",
     "formatter"
   ],
-  "author": "",
+  "author": "Dheeraj Singh",
   "license": "MIT",
   "engines": {
     "node": ">=16.0.0"
