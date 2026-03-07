@@ -2,11 +2,16 @@
  * format.js
  * Functions for formatting numbers in the Indian numbering system.
  * Handles comma placement (thousand, lakh, crore) and currency display.
+ *
+ * Cross-platform: Does NOT use Intl or toLocaleString — output is
+ * identical on Linux, macOS, Windows, Docker, and minimal Alpine images.
  */
 
 "use strict";
 
-const { validateNumber, splitNumber } = require("./helpers");
+var helpers = require("./helpers");
+var validateNumber = helpers.validateNumber;
+var splitNumber = helpers.splitNumber;
 
 /**
  * Formats the integer portion of a number using the Indian grouping system.
@@ -23,13 +28,13 @@ function formatIndianInteger(intStr) {
   }
 
   // Last 3 digits
-  const lastThree = intStr.slice(-3);
-  const remaining = intStr.slice(0, -3);
+  var lastThree = intStr.slice(-3);
+  var remaining = intStr.slice(0, -3);
 
   // Insert comma every 2 digits from the right in the remaining portion
-  const formatted = remaining.replace(/\B(?=(\d{2})+(?!\d))/g, ",");
+  var formatted = remaining.replace(/\B(?=(\d{2})+(?!\d))/g, ",");
 
-  return `${formatted},${lastThree}`;
+  return formatted + "," + lastThree;
 }
 
 /**
@@ -46,27 +51,27 @@ function formatIndianInteger(intStr) {
  * format(1234.56)   // "1,234.56"
  */
 function format(number) {
-  const num = validateNumber(number);
-  const isNegative = num < 0;
-  const { integer, decimal } = splitNumber(num);
+  var num = validateNumber(number);
+  var isNegative = num < 0;
+  var parts = splitNumber(num);
 
-  let result = formatIndianInteger(integer);
+  var result = formatIndianInteger(parts.integer);
 
   // Append decimal part if present
-  if (decimal) {
-    result += `.${decimal}`;
+  if (parts.decimal) {
+    result += "." + parts.decimal;
   }
 
   // Prepend minus sign for negative numbers
   if (isNegative) {
-    result = `-${result}`;
+    result = "-" + result;
   }
 
   return result;
 }
 
 /**
- * Format a number with the ₹ (Indian Rupee) symbol.
+ * Format a number with the Indian Rupee symbol (₹).
  *
  * @param {number|string} number - The number to format.
  * @returns {string} Formatted string prefixed with ₹.
@@ -76,22 +81,22 @@ function format(number) {
  * formatWithSymbol(-500)   // "-₹500"
  */
 function formatWithSymbol(number) {
-  const num = validateNumber(number);
-  const isNegative = num < 0;
-  const { integer, decimal } = splitNumber(num);
+  var num = validateNumber(number);
+  var isNegative = num < 0;
+  var parts = splitNumber(num);
 
-  let result = formatIndianInteger(integer);
+  var result = formatIndianInteger(parts.integer);
 
-  if (decimal) {
-    result += `.${decimal}`;
+  if (parts.decimal) {
+    result += "." + parts.decimal;
   }
 
   // For negative numbers the minus sign comes before the symbol
   if (isNegative) {
-    return `-₹${result}`;
+    return "-\u20B9" + result;   // \u20B9 = ₹ (safe Unicode escape)
   }
 
-  return `₹${result}`;
+  return "\u20B9" + result;      // \u20B9 = ₹
 }
 
 /**
@@ -106,13 +111,13 @@ function formatWithSymbol(number) {
  * lakhs(250000)  // "2.5 Lakh"
  */
 function lakhs(number) {
-  const num = validateNumber(number);
-  const value = num / 100000;
+  var num = validateNumber(number);
+  var value = num / 100000;
 
-  // Remove unnecessary trailing zeros
-  const display = parseFloat(value.toFixed(2));
+  // Remove unnecessary trailing zeros, keep up to 2 decimals
+  var display = parseFloat(value.toFixed(2));
 
-  return `${display} Lakh`;
+  return display + " Lakh";
 }
 
 /**
@@ -127,17 +132,17 @@ function lakhs(number) {
  * crores(75000000)  // "7.5 Crore"
  */
 function crores(number) {
-  const num = validateNumber(number);
-  const value = num / 10000000;
+  var num = validateNumber(number);
+  var value = num / 10000000;
 
-  const display = parseFloat(value.toFixed(2));
+  var display = parseFloat(value.toFixed(2));
 
-  return `${display} Crore`;
+  return display + " Crore";
 }
 
 module.exports = {
-  format,
-  formatWithSymbol,
-  lakhs,
-  crores,
+  format: format,
+  formatWithSymbol: formatWithSymbol,
+  lakhs: lakhs,
+  crores: crores,
 };
