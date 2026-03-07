@@ -1,0 +1,34 @@
+{
+  "name": "rupx",
+  "version": "1.0.0",
+  "description": "Indian Rupee formatter for Node.js — format numbers with Indian comma system, convert to words, lakhs and crores",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "keywords": [
+    "rupee",
+    "indian-number-system",
+    "lakh",
+    "crore",
+    "currency",
+    "indian-rupee",
+    "number-format",
+    "inr",
+    "money",
+    "formatter"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "bugs": {
+    "url": ""
+  },
+  "homepage": ""
+}
