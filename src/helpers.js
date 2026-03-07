@@ -20,7 +20,13 @@ function validateNumber(value) {
     if (value === "") {
       throw new TypeError("rupx: Expected a number but received an empty string.");
     }
-    value = Number(value);
+    const parsed = Number(value);
+    if (Number.isNaN(parsed)) {
+      throw new TypeError(
+        `rupx: Expected a numeric string but received "${value}".`
+      );
+    }
+    value = parsed;
   }
 
   if (typeof value !== "number") {
