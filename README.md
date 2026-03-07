@@ -195,6 +195,15 @@ Contributions are welcome! Feel free to open an issue or submit a pull request o
 4. Push to the branch (`git push origin feature/my-feature`)
 5. Open a Pull Request
 
+"keywords": [
+ "india",
+ "rupee",
+ "currency",
+ "lakh",
+ "crore",
+ "indian-number-system"
+]
+
 ---
 
 ## Author
@@ -204,3 +213,4 @@ Contributions are welcome! Feel free to open an issue or submit a pull request o
 ## License
 
 [MIT](LICENSE) © 2026 Dheeraj Singh
+
