@@ -3,9 +3,18 @@
   "version": "1.0.0",
   "description": "Indian Rupee formatter for Node.js — format numbers with Indian comma system, convert to words, lakhs and crores",
   "main": "index.js",
+  "exports": {
+    ".": "./index.js"
+  },
   "scripts": {
     "test": "node test/test.js"
   },
+  "files": [
+    "index.js",
+    "src/",
+    "README.md",
+    "LICENSE"
+  ],
   "keywords": [
     "rupee",
     "indian-number-system",

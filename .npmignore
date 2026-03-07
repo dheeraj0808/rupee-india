@@ -1,0 +1,7 @@
+# Ignore test files — they don't need to ship with the package
+test/
+.editorconfig
+.gitignore
+.github/
+*.md
+!README.md
