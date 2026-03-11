@@ -187,7 +187,7 @@ rupee-india/
 
 ## Contributing
 
-Contributions are welcome! Feel free to open an issue or submit a pull request on the [GitHub repository](https://github.com/dheeraj0808/package).
+Contributions are welcome! Feel free to open an issue or submit a pull request on the [GitHub repository](https://github.com/dheeraj0808/rupee-india).
 
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/my-feature`)
@@ -195,14 +195,6 @@ Contributions are welcome! Feel free to open an issue or submit a pull request o
 4. Push to the branch (`git push origin feature/my-feature`)
 5. Open a Pull Request
 
-"keywords": [
- "india",
- "rupee",
- "currency",
- "lakh",
- "crore",
- "indian-number-system"
-]
 
 ---
 

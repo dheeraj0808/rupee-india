@@ -34,10 +34,10 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git+https://github.com/dheeraj0808/rupee-india.git"
   },
   "bugs": {
-    "url": ""
+    "url": "https://github.com/dheeraj0808/rupee-india/issues"
   },
-  "homepage": ""
+  "homepage": "https://github.com/dheeraj0808/rupee-india#readme"
 }
